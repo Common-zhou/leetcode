@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @author zhoubing
  * @date 2021-03-20 00:34
  */
-public class SolutionNo238 {
+public class SolutionNo283 {
 
     public void moveZeroes(int[] nums) {
         //1. 记录下一个填充位置 然后往后移动
@@ -50,6 +50,6 @@ public class SolutionNo238 {
     }
 
     public static void main(String[] args) {
-        new SolutionNo238().moveZeroes(new int[]{0,1,0,3,12});
+        new SolutionNo283().moveZeroes(new int[]{0,1,0,3,12});
     }
 }
