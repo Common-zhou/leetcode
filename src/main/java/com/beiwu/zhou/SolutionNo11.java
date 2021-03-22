@@ -7,7 +7,7 @@ package com.beiwu.zhou;
  * @author zhoubing
  * @date 2021-03-20 00:20
  */
-public class SolutionNO11 {
+public class SolutionNo11 {
     public int maxArea1(int[] height) {
         int max = 0;
         for (int i = 0; i < height.length - 1; i++) {
@@ -38,7 +38,7 @@ public class SolutionNO11 {
     }
 
     public static void main(String[] args) {
-        SolutionNO11 solutionNO11 = new SolutionNO11();
+        SolutionNo11 solutionNO11 = new SolutionNo11();
         int max = solutionNO11.maxArea(new int[]{4, 3, 2, 1, 4});
         System.out.println(max);
     }
