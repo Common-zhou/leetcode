@@ -5,18 +5,18 @@ package com.beiwu.zhou;
  * @date 2021-03-26 11:44
  */
 public class TreeNode {
-    TreeNode left, right;
-    int val;
+    public TreeNode left, right;
+    public int val;
 
 
     TreeNode() {
     }
 
-    TreeNode(int val) {
+    public TreeNode(int val) {
         this.val = val;
     }
 
-    TreeNode(int val, TreeNode left, TreeNode right) {
+    public TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
         this.right = right;
