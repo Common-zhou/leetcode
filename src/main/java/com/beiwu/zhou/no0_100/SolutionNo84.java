@@ -1,4 +1,4 @@
-package com.beiwu.zhou;
+package com.beiwu.zhou.no0_100;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
