@@ -73,12 +73,12 @@ public class SolutionNo239 {
 
         // 将前k -1个元素 放到里面
         for (int i = 0; i < k - 1; i++) {
-            pq.add(new int[] {nums[i], i});
+            pq.add(new int[]{nums[i], i});
         }
 
         int[] results = new int[nums.length - k + 1];
         for (int i = k - 1; i < nums.length; i++) {
-            pq.add(new int[] {nums[i], i});
+            pq.add(new int[]{nums[i], i});
 
             int left = i - k + 1;
             while (!pq.isEmpty()) {
@@ -127,9 +127,49 @@ public class SolutionNo239 {
         return ans;
     }
 
+
+    /**
+     * 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
+     * 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+     * <p>
+     * 返回滑动窗口中的最大值。
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
+    public int[] maxSlidingWindow4(int[] nums, int k) {
+
+        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1[0] != o2[0]) {
+                    return o2[0] - o1[0];
+                }
+                return o2[1] - o1[1];
+            }
+        });
+
+        for (int i = 0; i < k - 1; i++) {
+            priorityQueue.add(new int[]{nums[i], i});
+        }
+
+        int[] res = new int[nums.length - k + 1];
+        for (int i = k - 1; i < nums.length; i++) {
+            priorityQueue.add(new int[]{nums[i], i});
+            int left = i - k + 1;
+            while (priorityQueue.peek()[1] < left) {
+                priorityQueue.poll();
+            }
+            res[left] = priorityQueue.peek()[0];
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
         SolutionNo239 solution = new SolutionNo239();
-        int[] ints = solution.maxSlidingWindow3(new int[] {1, 3, -1, -3, 5, 3, 6, 7}, 3);
+        int[] ints = solution.maxSlidingWindow4(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3);
 
         System.out.println(Arrays.toString(ints));
     }
