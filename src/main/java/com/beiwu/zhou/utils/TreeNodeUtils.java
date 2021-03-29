@@ -1,11 +1,11 @@
 package com.beiwu.zhou.utils;
 
 import com.beiwu.zhou.Node;
+import com.beiwu.zhou.TreeNode;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-import jdk.internal.util.xml.impl.Pair;
 
 /**
  * @author zhoubing
@@ -43,6 +43,41 @@ public class TreeNodeUtils {
 
     }
 
+    public static TreeNode createTreeNodeByArray(Integer[] nums) {
+
+        if (nums == null || nums.length == 0){
+            return null;
+        }
+
+        // [1,2,3,null,null,4,5]
+        TreeNode node = new TreeNode(nums[0]);
+
+        Deque<TreeNode> queue = new LinkedList<>();
+
+        queue.addLast(node);
+
+        int i = 0;
+        while (i < nums.length && !queue.isEmpty()) {
+            TreeNode curNode = queue.removeFirst();
+
+            if ((i * 2 + 1) >= nums.length) {
+                break;
+            }
+            Integer leftNum = nums[i * 2 + 1];
+            Integer rightNum = nums[i * 2 + 2];
+            if (leftNum != null) {
+                curNode.left = new TreeNode(leftNum);
+                queue.addLast(curNode.left);
+            }
+            if (rightNum != null) {
+                curNode.right = new TreeNode(rightNum);
+                queue.addLast(curNode.right);
+            }
+            i++;
+        }
+        return node;
+    }
+
 
     public static void main(String[] args) {
         Node node = createByArray(
@@ -50,5 +85,9 @@ public class TreeNodeUtils {
                 11, null, 12, null, 13, null, null, 14});
 
         System.out.println(node.val);
+
+
+        TreeNode treeNode = createTreeNodeByArray(new Integer[] {1, 2, 3, null, null, 4, 5});
+        System.out.println(treeNode);
     }
 }
