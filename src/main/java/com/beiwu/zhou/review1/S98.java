@@ -8,7 +8,7 @@ import java.util.List;
  * @author zhoubing
  * @date 2021-03-30 17:53
  */
-public class SolutionNo98 {
+public class S98 {
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
