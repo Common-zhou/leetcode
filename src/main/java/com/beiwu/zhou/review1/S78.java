@@ -18,25 +18,31 @@ public class S78 {
     }
 
     private void backstrack(int[] nums, int index, Deque<Integer> deque, List<List<Integer>> res) {
-        // 首先是递归边界条件
-        if (index == nums.length - 1) {
+        // terminal
+        if (index == nums.length) {
+            // 如果下标 超标了
             res.add(new ArrayList<>(deque));
             return;
         }
 
-        for (int i = index; i < nums.length; i++) {
-            backstrack(nums, index + 1, deque, res);
-            deque.addLast(nums[i]);
-            backstrack(nums, index + 1, deque, res);
-            deque.removeLast();
-        }
+        // process data
 
+        // 选当前层
+        deque.addLast(nums[index]);
+        backstrack(nums, index + 1, deque, res);
+        deque.removeLast();
+
+        backstrack(nums, index + 1, deque, res);
+
+        //drill down
+
+        // reverse data
     }
 
 
     public static void main(String[] args) {
         S78 s78 = new S78();
-        List<List<Integer>> subsets = s78.subsets(new int[] {1, 2, 3});
+        List<List<Integer>> subsets = s78.subsets(new int[]{1, 2, 3});
         for (List<Integer> subset : subsets) {
             System.out.println(subset);
         }
