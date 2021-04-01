@@ -10,32 +10,39 @@ import java.util.List;
  * @date 2021-03-31 17:44
  */
 public class S77 {
-
     public List<List<Integer>> combine(int n, int k) {
-        List<List<Integer>> res = new LinkedList<>();
 
-        backstrack(n, k, 1, new LinkedList<>(), res);
+        // n个数 选k个  组合
+        List<List<Integer>> res = new ArrayList<>();
+        Deque<Integer> selected = new LinkedList<>();
+        backstrack(n, k, 1, selected, res);
+
         return res;
     }
 
-    private void backstrack(int n, int k, int selectedIndex, Deque<Integer> deque,
+    private void backstrack(int n, int k, int index, Deque<Integer> selected,
                             List<List<Integer>> res) {
-        System.out.println("进入循环" + deque);
-        if (deque.size() == k) {
-            res.add(new ArrayList<>(deque));
+        // terminal
+        if (selected.size() == k) {
+            res.add(new ArrayList<>(selected));
             return;
         }
-        for (int i = selectedIndex; i <= n; i++) {
-            deque.addLast(i);
-            backstrack(n, k, i + 1, deque, res);
-            deque.removeLast();
-        }
-    }
 
+        //process data
+        for (int i = index; i <= n; i++) {
+            selected.addLast(i);
+            backstrack(n, k, i + 1, selected, res);
+            selected.removeLast();
+        }
+
+        //drill down
+
+        // reverse data
+    }
 
     public static void main(String[] args) {
         S77 s77 = new S77();
-        List<List<Integer>> combine = s77.combine(4, 2);
+        List<List<Integer>> combine = s77.combine(3, 2);
         for (List<Integer> list : combine) {
             System.out.println(list);
         }
