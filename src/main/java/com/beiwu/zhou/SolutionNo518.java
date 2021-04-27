@@ -20,6 +20,17 @@ public class SolutionNo518 {
         return res.size();
     }
 
+    public int change2(int amount, int[] coins) {
+        int[] dp = new int[amount + 1];
+        dp[0] = 0;
+        for (int coin : coins) {
+            for (int i = coin; i < amount + 1; i++) {
+                dp[i] += dp[i - coin];
+            }
+        }
+        return dp[amount];
+    }
+
     public void dfs(int amount, int[] coins, Deque<Integer> select, Set<List<Integer>> res) {
         if (amount == 0) {
             ArrayList<Integer> list = new ArrayList<>(select);
